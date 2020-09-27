@@ -24,3 +24,11 @@ Você pode alerar os dados da conexão do banco e da porta da API no arquivo .en
 Exemplo, para consultar o path e a viewBox da cidade de Apodi, considerando que a API está ouvindo na porta 3000:
 http://localhost:3000/getSvg/apodi
 http://localhost:3000/getViewBox/apodi
+
+
+## Executar Front
+
+A aplicação está na rota inicial:
+
+http://localhost:3000
+
