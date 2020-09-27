@@ -95,7 +95,6 @@
             return response.json();
         }).then(response =>{
             document.getElementById('svg').setAttribute('viewBox', response[0].getviewbox);
-            document.getElementById('cidade').value=""
         })
 
         }
