@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Busca Mapa de Cidade - Banco de Dados 2</title>
+    </head>
+    <body>
+        <h1>Busque Mapa de Cidade</h1>
+        <div id="box">
+            <label>Nome da Cidade:</label>
+            <input type="text" id='cidade' />
+            <button id="botao" onclick="gerarSVG()">Gerar SVG</button><br /><br />
+            <svg id="svg" style="border:1px black solid;" xmlns="http://www.w3.org/2000/svg" >
+            <path id="visivel" fill="none" stroke="blue" stroke-width="0.001"/>
+            </svg>
+        </div>
+    </body>
+    <style>
+    body{
+        background-color: red;
+    }
+    </style>
+    <script>
+
+    function gerarSVG(){
+
+        const cidade = document.getElementById('cidade').value;
+
+        const requestPolygonCity = new Request(`http://localhost:3000/getSvg/${cidade}`);
+        const requestViewBoxCity = new Request(`http://localhost:3000/getViewBox/${cidade}`);
+
+
+        fetch(requestPolygonCity)
+            .then(response => {
+                return response.json();     
+        }).then(response => {
+            document.getElementById('visivel').setAttribute('d', response[0].st_assvg)
+        })
+
+        fetch(requestViewBoxCity)
+        .then(response => {
+            return response.json();
+        }).then(response =>{
+            document.getElementById('svg').setAttribute('viewBox', response[0].getviewbox);
+        })
+
+        }
+
+    </script>
+</html>
